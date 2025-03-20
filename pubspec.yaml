@@ -1,8 +1,6 @@
 name: mrz_scanner
 description: "MRZ Scanner"
-version: 0.0.1
-homepage:
-  "https://github.com/sreeharikodavalam/mrz_scanner"
+version: 0.0.2
 
 environment:
   sdk: ^3.4.3

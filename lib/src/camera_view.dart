@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -141,13 +143,23 @@ class _MRZCameraViewState extends State<MRZCameraView> {
   }
 
   InputImageFormat getInputFormat(ImageFormatGroup group) {
-    switch (group) {
-      case ImageFormatGroup.bgra8888:
-        return InputImageFormat.bgra8888;
-      case ImageFormatGroup.nv21:
-        return InputImageFormat.nv21;
-      default:
-        return InputImageFormat.yuv420;
+    debugPrint('');
+    if (Platform.isAndroid) {
+      switch (group) {
+        case ImageFormatGroup.nv21:
+          return InputImageFormat.nv21;
+        case ImageFormatGroup.yuv420:
+          return InputImageFormat.yuv_420_888;
+        default:
+          return InputImageFormat.yv12;
+      }
+    } else {
+      switch (group) {
+        case ImageFormatGroup.bgra8888:
+          return InputImageFormat.bgra8888;
+        default:
+          return InputImageFormat.yuv420;
+      }
     }
   }
 }
